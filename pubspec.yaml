@@ -1,0 +1,26 @@
+name: food_ordering_app
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.6
+  google_fonts: ^4.0.5
+  page_transition: ^2.0.9
+  rate_limiter: ^1.0.0
+  simple_animations: ^5.0.0+3
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
