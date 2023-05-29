@@ -1,8 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rate_limiter/rate_limiter.dart';
 
 import '../../constants/constants.dart';
+import 'data/models/category.dart';
+import 'data/models/product.dart';
+import 'widgets/categories_listview.dart';
+import 'widgets/menu_appbar.dart';
+import 'widgets/menu_search.dart';
+import 'widgets/popular_listview.dart';
+import 'widgets/promotions.dart';
+
+const List<FoodCategory> categories = [
+  FoodCategory(
+    title: 'All',
+    image: 'assets/images/all.png',
+  ),
+  FoodCategory(
+    title: 'Burger',
+    image: 'assets/images/burger.png',
+  ),
+  FoodCategory(
+    title: 'Pizza',
+    image: 'assets/images/pizza.png',
+  ),
+  FoodCategory(
+    title: 'Dessert',
+    image: 'assets/images/dessert.png',
+  ),
+  FoodCategory(
+    title: 'Soup',
+    image: 'assets/images/soup.png',
+  ),
+];
+
+const List<Product> products = [
+  Product(
+    title: 'Beef Burger',
+    price: 20.0,
+    image:
+        'https://www.pngall.com/wp-content/uploads/2016/05/Burger-Free-Download-PNG.png',
+  ),
+  Product(
+    title: 'Pizza Fries',
+    price: 32.0,
+    image:
+        'https://png.pngtree.com/png-vector/20230331/ourmid/pngtree-gourmet-pizza-cartoon-png-image_6656160.png',
+  ),
+  Product(
+    title: 'Beef Burger',
+    price: 20.0,
+    image:
+        'https://www.pngall.com/wp-content/uploads/2016/05/Burger-Free-Download-PNG.png',
+  ),
+  Product(
+    title: 'Pizza Fries',
+    price: 32.0,
+    image:
+        'https://png.pngtree.com/png-vector/20230331/ourmid/pngtree-gourmet-pizza-cartoon-png-image_6656160.png',
+  ),
+  Product(
+    title: 'Beef Burger',
+    price: 20.0,
+    image:
+        'https://www.pngall.com/wp-content/uploads/2016/05/Burger-Free-Download-PNG.png',
+  ),
+  Product(
+    title: 'Pizza Fries',
+    price: 32.0,
+    image:
+        'https://png.pngtree.com/png-vector/20230331/ourmid/pngtree-gourmet-pizza-cartoon-png-image_6656160.png',
+  ),
+  Product(
+    title: 'Beef Burger',
+    price: 20.0,
+    image:
+        'https://www.pngall.com/wp-content/uploads/2016/05/Burger-Free-Download-PNG.png',
+  ),
+  Product(
+    title: 'Pizza Fries',
+    price: 32.0,
+    image:
+        'https://png.pngtree.com/png-vector/20230331/ourmid/pngtree-gourmet-pizza-cartoon-png-image_6656160.png',
+  ),
+];
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -13,10 +93,12 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   late final TextEditingController _searchController;
+  late final ValueNotifier<String> _selectedCategoryNotifier;
 
   @override
   void initState() {
     _searchController = TextEditingController()..addListener(_onSearch);
+    _selectedCategoryNotifier = ValueNotifier<String>('All');
     super.initState();
   }
 
@@ -40,6 +122,13 @@ class _MenuScreenState extends State<MenuScreen> {
       );
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    _selectedCategoryNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -59,68 +148,30 @@ class _MenuScreenState extends State<MenuScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Menu',
-                      style: kPoppinsRegular.copyWith(
-                        fontSize: 42,
-                        color: kLightBlack,
-                      ),
-                    ),
-                    const CircleAvatar(
-                      backgroundColor: kDarkPurple,
-                      radius: 28,
-                      backgroundImage: AssetImage(
-                        'assets/images/jungle.jfif',
-                      ),
-                    ),
-                  ],
-                ),
+              const MenuAppBar(),
+              const SizedBox(
+                height: 30,
+              ),
+              MenuSearch(
+                searchController: _searchController,
               ),
               const SizedBox(
-                height: 20,
+                height: 32,
               ),
-              Container(
-                height: 58,
-                margin: const EdgeInsets.symmetric(horizontal: 36),
-                decoration: BoxDecoration(
-                  borderRadius: kCircularBorderRadius30,
-                  color: kLightGrey,
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: SvgPicture.asset(
-                        'assets/icons/search.svg',
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: _searchController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search',
-                          hintStyle: kPoppinsRegular.copyWith(
-                            fontSize: 22,
-                            color: kGrey,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              CategoriesListView(
+                selectedCategoryNotifier: _selectedCategoryNotifier,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Promotions(),
+              const SizedBox(
+                height: 15,
+              ),
+              const Popular(),
+              const SizedBox(
+                height: 40,
+              ),
             ],
           ),
         ),

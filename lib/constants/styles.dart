@@ -14,6 +14,7 @@ const Color kLightBlack = Color(0XFF101010);
 const Color kLighterBlack = Color(0XFF373737);
 const Color kGrey = Color(0XFF868585);
 const Color kLightGrey = Color(0XFFEFEEEE);
+const Color kLighterGrey = Color(0XFFEBE8E8);
 const Color kGreen = Color(0XFF0E803C);
 const Color kGolden = Color(0XFFC9AA05);
 const Color kRed = Color(0XFFFF000F);
@@ -39,6 +40,6 @@ final TextStyle kPoppinsBold = GoogleFonts.poppins(
   color: kWhite,
 );
 
+final kCircularBorderRadius20 = BorderRadius.circular(20);
 final kCircularBorderRadius25 = BorderRadius.circular(25);
-
 final kCircularBorderRadius30 = BorderRadius.circular(30);
