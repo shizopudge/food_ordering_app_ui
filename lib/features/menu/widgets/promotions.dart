@@ -72,7 +72,7 @@ class Promotions extends StatelessWidget {
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: 'on all oreders above \$150',
+                                    text: 'on all orders above \$150',
                                     style: kPoppinsRegular.copyWith(
                                       fontSize: 16,
                                       color: kWhite2,

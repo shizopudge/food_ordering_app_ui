@@ -45,7 +45,7 @@ class Popular extends StatelessWidget {
                 final Product product = products[index];
                 return ProductCard(
                   product: product,
-                  id: index,
+                  id: index + 551,
                 );
               },
             ),

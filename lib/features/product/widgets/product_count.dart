@@ -23,6 +23,7 @@ class ProductCount extends StatelessWidget {
       children: [
         InkWell(
           onTap: _removeProduct,
+          borderRadius: kCircularBorderRadius20,
           child: const Icon(
             Icons.remove_circle_outline,
             color: kDarkPurple,
@@ -47,6 +48,7 @@ class ProductCount extends StatelessWidget {
         ),
         InkWell(
           onTap: _addProduct,
+          borderRadius: kCircularBorderRadius20,
           child: const Icon(
             Icons.add_circle_outline,
             color: kDarkPurple,

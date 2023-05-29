@@ -7,6 +7,7 @@ import '../../constants/constants.dart';
 import '../menu/data/models/product.dart';
 import 'data/models/additive.dart';
 import 'widgets/addititve_listview.dart';
+import '../../common/floating_button.dart';
 import 'widgets/product_count.dart';
 import 'widgets/product_image.dart';
 import 'widgets/product_rating.dart';
@@ -73,36 +74,10 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FadeAnimationX(
+      floatingActionButton: const FadeAnimationX(
         delay: 1,
-        child: InkWell(
-          onTap: () {},
-          child: Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 60).copyWith(bottom: 20),
-            height: 68,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: kCircularBorderRadius20,
-              color: kDarkPurple,
-              boxShadow: const [
-                BoxShadow(
-                  color: kGrey,
-                  blurRadius: 1,
-                  spreadRadius: 1,
-                  offset: Offset(0, 1),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                'Add to cart',
-                style: kPoppinsSemiBold.copyWith(
-                  fontSize: 32,
-                ),
-              ),
-            ),
-          ),
+        child: FloatingButton(
+          title: 'Add to cart',
         ),
       ),
       body: Container(
